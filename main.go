@@ -3,15 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/codegangsta/martini"
-	"github.com/martini-contrib/auth"
-	"github.com/martini-contrib/gzip"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"os/signal"
-	"syscall"
+
+	"github.com/codegangsta/martini"
+	"github.com/martini-contrib/auth"
+	"github.com/martini-contrib/gzip"
 )
 
 func main() {
@@ -62,8 +61,4 @@ OPTIONS:
 	})
 
 	http.ListenAndServe(":"+port, m)
-
-	sigchan := make(chan os.Signal)
-	signal.Notify(sigchan, syscall.SIGINT, syscall.SIGTERM)
-	<-sigchan
 }
